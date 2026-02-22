@@ -1,0 +1,13 @@
+name: Azure Setup
+on: [push] # This means "Run whenever I push code"
+
+jobs:
+  setup-azure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # This uses the secret you saved
+      - name: Create RG
+        run: az group create --name "MyNewRG" --location "eastus2"
