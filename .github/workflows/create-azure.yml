@@ -8,6 +8,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # This uses the secret you saved
+          client-id: ${{ secrets.AZURE_CLIENT_ID }} # This uses the secret you saved
+          tenat-id: ${{ secrets.AZURE_TENANT_ID }}
+
       - name: Create RG
         run: az group create --name "MyNewRG" --location "eastus2"
